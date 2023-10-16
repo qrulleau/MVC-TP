@@ -2,7 +2,7 @@
 
 class database 
 {
-  public function connexion(){
+  public static function connexion(){
 
     $server = 'localhost';
     $user = 'qrulleau' ;
