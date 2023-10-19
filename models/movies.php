@@ -101,10 +101,11 @@ class Movies
         $this->yearProduction = $yearProduction;
     }
 
-    public function getMovies(){
+    public static function getMovies(){
+      global $movies;
       try {
         $db = database::connexion();
-        $querie = $db->prepare('SELECT * FROM Movies');
+        $querie = $db->prepare('SELECT * FROM movie');
         $querie->execute();
         $movies = $querie->fetchAll(PDO::FETCH_ASSOC);
         return $movies;
@@ -113,11 +114,11 @@ class Movies
         return null;
       }
     }
-    public function getMovie(){
+    public static function getMovie($id_book){
       try {
-        $id_book = $_GET['id'];
+        global $movie;
         $db = database::connexion();
-        $querie = $db->prepare('SELECT * FROM Movies WHERE ID_MOVIE = :id');
+        $querie = $db->prepare('SELECT * FROM movie WHERE id_movie = :id');
         $querie->bindValue(':id',$id_book);
         $querie->execute();
         $movie = $querie->fetch(PDO::FETCH_ASSOC);
@@ -128,17 +129,54 @@ class Movies
       }
     }
 
-    public function updateMovie(){
+    public static function updateMovie(
+      string $title,
+      string $producer,
+      string $synopsis,
+      string $theme,
+      string $scriptWriter,
+      string $companyProduction,
+      int $yearProduction,
+      int $id_movie
+    ){
+      try {
+        $db = database::connexion();
+        $querie = $db->prepare(
+          'UPDATE movie
+          SET title_movie = :title,
+              producer_movie = :producer,
+              synopsis_movie = :synopsis,
+              theme_movie = :theme,
+              scriptWriter_movie = :scriptWriter,
+              companyProduction_movie = :companyProduction,
+              yearProduction_movie = :yearProduction
+          WHERE id_movie = :id_movie;'
+        );
+        $querie->bindValue(':title', $title);
+        $querie->bindValue(':producer', $producer);
+        $querie->bindValue(':synopsis', $synopsis);
+        $querie->bindValue(':theme', $theme);
+        $querie->bindValue(':scriptWriter', $scriptWriter);
+        $querie->bindValue(':companyProduction', $companyProduction);
+        $querie->bindValue(':yearProduction', $yearProduction);
+        $querie->bindValue(':id_movie', $id_movie);
+        $querie->execute();
+        header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');
+        return true;
+    } catch (PDOException $e) {
+        echo "Erreur de requête : " . $e->getMessage();
+        return false;
+    }
 
     }
 
-    public function deleteMovie(){
+    public static function deleteMovie($id_book){
       try {
-        $id_book = $_GET['id'];
         $db = database::connexion();
-        $querie = $db->prepare('DELETE FROM MOVIES WHERE ID_MOVIE = :id');
+        $querie = $db->prepare('DELETE FROM movie WHERE id_movie = :id');
         $querie->bindValue(':id',$id_book);
         $querie->execute();
+        header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');
         return true;
       } catch (PDOException $e) {
         echo "Erreur de requete : " . $e->getMessage();
@@ -146,7 +184,31 @@ class Movies
       }
     }
 
-    public function createMovie(){
-
-    }
+    public static function addMovie(
+      string $title,
+      string $producer,
+      string $synopsis,
+      string $theme,
+      string $scriptWriter,
+      string $companyProduction,
+      int $yearProduction
+  ) {
+      try {
+          $db = database::connexion();
+          $querie = $db->prepare('INSERT INTO movie (title_movie, producer_movie, synopsis_movie, theme_movie, scriptWriter_movie, companyProduction_movie, yearProduction_movie) VALUES (:title, :producer, :synopsis, :theme, :scriptWriter, :companyProduction, :yearProduction)');
+          $querie->bindValue(':title', $title);
+          $querie->bindValue(':producer', $producer);
+          $querie->bindValue(':synopsis', $synopsis);
+          $querie->bindValue(':theme', $theme);
+          $querie->bindValue(':scriptWriter', $scriptWriter);
+          $querie->bindValue(':companyProduction', $companyProduction);
+          $querie->bindValue(':yearProduction', $yearProduction);
+          $querie->execute();
+          header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');
+          return true;
+      } catch (PDOException $e) {
+          echo "Erreur de requête : " . $e->getMessage();
+          return false;
+      }
+  }
 }

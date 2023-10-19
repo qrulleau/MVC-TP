@@ -55,7 +55,8 @@ class User
         $querie->execute();
         $user = $querie->fetch(PDO::FETCH_ASSOC);
         if ($user){
-             header('Location: http://www.localhost/MVC-TP/views/backOffice/');
+            header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');   
+            exit();     
         }
       } catch (PDOException $e) {
         echo "Erreur de requete : " . $e->getMessage();

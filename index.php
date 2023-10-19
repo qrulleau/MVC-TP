@@ -2,17 +2,26 @@
 
 $route = $_GET['route'] ?? 'accueil';
 
-// Déterminez quel contrôleur doit être appelé en fonction de la route
+
 switch ($route) {
     case 'accueil':
-        // Contrôleur pour la page d'accueil
-        include 'controllers/authentication.php';
+        include 'controllers/AuthenticationController.php';
         break;
-    case 'auth':
-        // Contrôleur d'authentification
-        include 'controllers/AuthentificationController.php';
+    case 'backoffice':
+        include 'controllers/BackOfficeController.php';
+        break;
+    case 'detail':
+        include 'controllers/DetailController.php';
+        break;
+    case 'delete':
+        include 'controllers/DeleteController.php';
+        break;
+    case 'add':
+        include 'controllers/AddController.php';
+        break;
+    case 'update':
+        include 'controllers/UpdateController.php';
         break;
     default:
-        // Gérez d'autres routes (par exemple, une page 404)
-        include 'controllers/authentication.php';
+        include 'controllers/AuthenticationController.php';
 }
