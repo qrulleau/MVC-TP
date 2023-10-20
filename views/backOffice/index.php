@@ -11,10 +11,16 @@ require_once __DIR__ . '/../../components/header.php' ?>
   <div class="container">
   <div class="d-flex">
     <h2 class="welcome">Bienvenue <?php echo $_SESSION['username']?></h2>
-    <a href="http://www.localhost/MVC-TP/index.php?route=disconnect">se deconnecter</a>
+    <div class="d-flex disconnect">
+      <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2V6" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+        <path d="M8.5 3.70605C5.26806 5.07157 3 8.27099 3 12.0001C3 14.3052 3.86656 16.4079 5.29169 18.0002M15.5 3.70605C18.7319 5.07157 21 8.27099 21 12.0001C21 16.9707 16.9706 21.0001 12 21.0001C10.9481 21.0001 9.93834 20.8197 9 20.488" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <a href="http://www.localhost/MVC-TP/index.php?route=disconnect">se déconnecter</a>
+    </div>
   </div>
   <form class="py-12" method="post">   
-    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Rechercher</label>
     <div class="relative">
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -31,7 +37,7 @@ require_once __DIR__ . '/../../components/header.php' ?>
       ?>
       <div class="box">
         <div class="thumbnail">
-            <img src="http://www.localhost/MVC-TP/assets/pulp.jpg" alt="">
+            <img src="http://www.localhost/MVC-TP/assets/<?php echo $movie['thumbnail_movie'] ?>" alt="">
         </div>
         <div class="description d-flex direction-column align-start">
           <h2><?php echo $movie['title_movie'] ?></h2>
