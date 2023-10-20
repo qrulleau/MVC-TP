@@ -1,3 +1,80 @@
 textarea, input {
   border: 1px solid black;
 }
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.more {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  background-color: rgb(29 78 216 / 1);
+  border: 1px solid rgb(29 78 216 / 1);
+
+}
+.more:hover {
+  border: 1px solid rgb(29 78 216 / 1);
+  background-color: #fff;
+  color: rgb(29 78 216 / 1);
+  transition: 500ms;
+}
+.box {
+  width: 291px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.box:hover {
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+  transition: 600ms;
+}
+.thumbnail {
+  overflow: hidden;
+}
+.box:hover img {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  transition: 400ms;
+  transform: scale(1.3);
+}
+.box img {
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+}
+.description {
+  margin: 16px;
+}
+.description h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+.description p {
+  margin: 20px 0;
+  height: 120px;
+  overflow: hidden;
+  color: #949494;
+}
+.description > .d-flex {
+  width: 100%;
+}
+.listing {
+  gap: 20px;
+}
+.direction-column {
+  flex-direction: column;
+}
+.align-start {
+  align-items: flex-start;
+}
+.container {
+  margin: 0 auto;
+}
+h1 {
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  margin: 20px 0 32px 0 !important;
+}

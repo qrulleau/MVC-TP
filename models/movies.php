@@ -211,4 +211,20 @@ class Movies
           return false;
       }
   }
+  public static function searchMovies($title)
+  {
+  global $movies;
+    try {
+      $db = database::connexion();
+      $querie = $db->prepare('SELECT * FROM movie where title_movie like :title');
+      $querie->bindValue(':title', '%' . $title . '%');
+      $querie->execute();
+      $movies = $querie->fetchAll(PDO::FETCH_ASSOC);
+      return $movies;
+      
+    } catch (PDOException $e) {
+      echo "Erreur de requête : " . $e->getMessage();
+      return false;
+    }
+  }
 }
