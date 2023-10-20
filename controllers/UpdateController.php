@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($_SESSION['username'])){
+  header('Location : http://www.localhost/MVC-TP/ ');
+}
+
 require_once __DIR__ . '/../models/movies.php';
 $id_movie = $_GET['id'];
 $title = $_POST['title'];

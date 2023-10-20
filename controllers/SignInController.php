@@ -9,7 +9,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL);
 
-require_once __DIR__ . '/../views/signin.php';
 require_once __DIR__ . '/../models/user.php';
 global $errors;
 // $_SESSION['errors'] = " ";
@@ -23,7 +22,7 @@ if (isset($username)){
   if ($result) {
     
     User::createUser($password, $email, $username);
-    header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');
+    header('Location: http://www.localhost/MVC-TP/');
     exit();
   } else {
       // $_SESSION['errors'] = "Votre mot de passe n'est pas valide";
@@ -31,3 +30,4 @@ if (isset($username)){
   }
   
 }
+require_once __DIR__ . '/../views/signin.php';
