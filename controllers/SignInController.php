@@ -15,10 +15,6 @@ if (isset($username)){
   $regex = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W\_]).{8,}$/';
   $checkRegex = preg_match($regex, $password);
   $checkPassword = strpos($password,$username);
-  // var_dump($password);
-  // var_dump($username);
-  // var_dump($checkPassword);
-  // die();
   if ($checkRegex && $checkPassword === false) {
     User::createUser($password, $email, $username);
     header('Location: http://www.localhost/MVC-TP/');
