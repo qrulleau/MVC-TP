@@ -11,6 +11,7 @@ class Movies
     private string $scriptWriter;
     private string $companyProduction;
     private int $yearProduction;
+    private string $thumbnail;
     private database $database;
 
     public function __construct(
@@ -20,7 +21,8 @@ class Movies
         string $theme,
         string $scriptWriter,
         string $companyProduction,
-        string $yearProduction
+        string $yearProduction,
+        string $thumbnail
     ) {
         $this->title = $title;
         $this->producer = $producer;
@@ -29,6 +31,7 @@ class Movies
         $this->scriptWriter = $scriptWriter;
         $this->companyProduction = $companyProduction;
         $this->yearProduction = $yearProduction;
+        $this->thumbnail = $thumbnail;
     }
 
     public function getTitle(): string
@@ -136,20 +139,27 @@ class Movies
       string $theme,
       string $scriptWriter,
       string $companyProduction,
+      array $thumbnail,
       int $yearProduction,
       int $id_movie
     ){
       try {
+        $uploads_dir = 'assets/thumbnail';
+        $tmp_name = $_FILES["thumbnail"]["tmp_name"];
+        $name = basename($_FILES["thumbnail"]["name"]);
+        move_uploaded_file($tmp_name, "$uploads_dir/$name");
+        
         $db = database::connexion();
         $query = $db->prepare(
           'UPDATE movie
-          SET title_movie = :title,
+           SET title_movie = :title,
               producer_movie = :producer,
               synopsis_movie = :synopsis,
               theme_movie = :theme,
               scriptWriter_movie = :scriptWriter,
               companyProduction_movie = :companyProduction,
-              yearProduction_movie = :yearProduction
+              yearProduction_movie = :yearProduction,
+              thumbnail_movie = :thumbnail
           WHERE id_movie = :id_movie;'
         );
         $query->bindValue(':title', $title);
@@ -159,8 +169,10 @@ class Movies
         $query->bindValue(':scriptWriter', $scriptWriter);
         $query->bindValue(':companyProduction', $companyProduction);
         $query->bindValue(':yearProduction', $yearProduction);
+        $query->bindValue(':thumbnail', $thumbnail["name"]);
         $query->bindValue(':id_movie', $id_movie);
         $query->execute();
+
         header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');
         return true;
     } catch (PDOException $e) {

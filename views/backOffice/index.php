@@ -37,7 +37,7 @@ require_once __DIR__ . '/../../components/header.php' ?>
       ?>
       <div class="box">
         <div class="thumbnail">
-            <img src="http://www.localhost/MVC-TP/assets/<?php echo $movie['thumbnail_movie'] ?>" alt="">
+            <img src="http://www.localhost/MVC-TP/assets/thumbnail/<?php echo $movie['thumbnail_movie'] ?>" alt="">
         </div>
         <div class="description d-flex direction-column align-start">
           <h2><?php echo $movie['title_movie'] ?></h2>
