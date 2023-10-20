@@ -6,14 +6,16 @@ class User
 {
     private string $email;
     private string $password;
+    private string $username;
     private DateTime $yearCreation;
     private database $database;
 
-    public function __construct(string $email, string $password, DateTime $yearCreation)
+    public function __construct(string $email, string $password, DateTime $yearCreation, string $username)
     {
         $this->email = $email;
         $this->password = $password;
         $this->yearCreation = $yearCreation;
+        $this->username = $username;
     }
 
     public function getEmail(): string
