@@ -203,11 +203,17 @@ class Movies
       string $theme,
       string $scriptWriter,
       string $companyProduction,
-      int $yearProduction
+      int $yearProduction,
+      array $thumbnail
   ) {
       try {
+          $uploads_dir = 'assets/thumbnail';
+          $tmp_name = $_FILES["thumbnail"]["tmp_name"];
+          $name = basename($_FILES["thumbnail"]["name"]);
+          move_uploaded_file($tmp_name, "$uploads_dir/$name");
+          
           $db = database::connexion();
-          $query = $db->prepare('INSERT INTO movie (title_movie, producer_movie, synopsis_movie, theme_movie, scriptWriter_movie, companyProduction_movie, yearProduction_movie) VALUES (:title, :producer, :synopsis, :theme, :scriptWriter, :companyProduction, :yearProduction)');
+          $query = $db->prepare('INSERT INTO movie (title_movie, producer_movie, synopsis_movie, theme_movie, scriptWriter_movie, companyProduction_movie, yearProduction_movie, thumbnail_movie) VALUES (:title, :producer, :synopsis, :theme, :scriptWriter, :companyProduction, :yearProduction, :thumbnail)');
           $query->bindValue(':title', $title);
           $query->bindValue(':producer', $producer);
           $query->bindValue(':synopsis', $synopsis);
@@ -215,6 +221,7 @@ class Movies
           $query->bindValue(':scriptWriter', $scriptWriter);
           $query->bindValue(':companyProduction', $companyProduction);
           $query->bindValue(':yearProduction', $yearProduction);
+          $query->bindValue(':thumbnail', $thumbnail["name"]);
           $query->execute();
           header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');
           return true;

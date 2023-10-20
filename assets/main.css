@@ -35,6 +35,9 @@ textarea, input {
 .thumbnail {
   overflow: hidden;
 }
+.thumbnail img {
+  height: 349px;
+}
 .box:hover img {
   border-top-right-radius: 0px;
   border-top-left-radius: 0px;

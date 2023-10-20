@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (!isset($_SESSION['username'])){
   header('Location : http://www.localhost/MVC-TP/ ');
@@ -14,8 +15,8 @@ $scriptWriter = $_POST['scriptWriter'];
 $companyProduction = $_POST['companyProduction'];
 $yearProduction = $_POST['yearProduction'];
 $thumbail = $_FILES["thumbnail"];
-Movies::getMovie($id_movie);
 
+Movies::getMovie($id_movie);
 
 if (isset($title)){
   Movies::updateMovie($title,$producer,$synopsis,$theme,$scriptWriter,$companyProduction,$thumbail,$yearProduction,$id_movie);

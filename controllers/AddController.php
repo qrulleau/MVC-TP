@@ -14,9 +14,10 @@ function test (){
   $scriptWriter = $_POST['scriptWriter'];
   $companyProduction = $_POST['companyProduction'];
   $yearProduction = $_POST['yearProduction'];
+  $thumbnail = $_FILES['thumbnail'];
 
   if (isset($title)){
-    Movies::addMovie($title,$producer,$synopsis,$theme,$scriptWriter,$companyProduction,$yearProduction);
+    Movies::addMovie($title,$producer,$synopsis,$theme,$scriptWriter,$companyProduction,$yearProduction,$thumbnail);
   }
 }
 test();
