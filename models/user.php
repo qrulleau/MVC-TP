@@ -55,6 +55,8 @@ class User
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);
         if ($user){
+            session_start();
+            $_SESSION['username'] = $user['username_user'];
             header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');   
             exit();     
         }

@@ -25,6 +25,9 @@ switch ($route) {
     case 'update':
         include 'controllers/UpdateController.php';
         break;
+    case 'disconnect':
+        include 'controllers/DisconnectController.php';
+        break;
     default:
         include 'controllers/AuthenticationController.php';
 }

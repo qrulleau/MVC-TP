@@ -1,4 +1,6 @@
-<?php require_once __DIR__ . '/../../components/header.php' ?>
+<?php 
+session_start();
+require_once __DIR__ . '/../../components/header.php' ?>
   <div class="d-flex justify-center">
     <a href="http://www.localhost/MVC-TP/index.php?route=backoffice">
       <h1 class="text-center">NETFLUX</h1>
@@ -7,8 +9,10 @@
 
  
   <div class="container">
-
-    <h2></h2>
+  <div class="d-flex">
+    <h2 class="welcome">Bienvenue <?php echo $_SESSION['username']?></h2>
+    <a href="http://www.localhost/MVC-TP/index.php?route=disconnect">se deconnecter</a>
+  </div>
   <form class="py-12" method="post">   
     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
     <div class="relative">
@@ -27,9 +31,7 @@
       ?>
       <div class="box">
         <div class="thumbnail">
-          <a href="">
             <img src="http://www.localhost/MVC-TP/assets/pulp.jpg" alt="">
-          </a>
         </div>
         <div class="description d-flex direction-column align-start">
           <h2><?php echo $movie['title_movie'] ?></h2>
