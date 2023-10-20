@@ -16,6 +16,9 @@ switch ($route) {
     case 'delete':
         include 'controllers/DeleteController.php';
         break;
+    case 'signin':
+        include 'controllers/SignInController.php';
+        break;
     case 'add':
         include 'controllers/AddController.php';
         break;

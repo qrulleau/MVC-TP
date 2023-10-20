@@ -105,9 +105,9 @@ class Movies
       global $movies;
       try {
         $db = database::connexion();
-        $querie = $db->prepare('SELECT * FROM movie');
-        $querie->execute();
-        $movies = $querie->fetchAll(PDO::FETCH_ASSOC);
+        $query = $db->prepare('SELECT * FROM movie');
+        $query->execute();
+        $movies = $query->fetchAll(PDO::FETCH_ASSOC);
         return $movies;
       } catch (PDOException $e) {
         echo "Erreur de requete : " . $e->getMessage();
@@ -118,10 +118,10 @@ class Movies
       try {
         global $movie;
         $db = database::connexion();
-        $querie = $db->prepare('SELECT * FROM movie WHERE id_movie = :id');
-        $querie->bindValue(':id',$id_book);
-        $querie->execute();
-        $movie = $querie->fetch(PDO::FETCH_ASSOC);
+        $query = $db->prepare('SELECT * FROM movie WHERE id_movie = :id');
+        $query->bindValue(':id',$id_book);
+        $query->execute();
+        $movie = $query->fetch(PDO::FETCH_ASSOC);
         return $movie;
       } catch (PDOException $e) {
         echo "Erreur de requete : " . $e->getMessage();
@@ -141,7 +141,7 @@ class Movies
     ){
       try {
         $db = database::connexion();
-        $querie = $db->prepare(
+        $query = $db->prepare(
           'UPDATE movie
           SET title_movie = :title,
               producer_movie = :producer,
@@ -152,15 +152,15 @@ class Movies
               yearProduction_movie = :yearProduction
           WHERE id_movie = :id_movie;'
         );
-        $querie->bindValue(':title', $title);
-        $querie->bindValue(':producer', $producer);
-        $querie->bindValue(':synopsis', $synopsis);
-        $querie->bindValue(':theme', $theme);
-        $querie->bindValue(':scriptWriter', $scriptWriter);
-        $querie->bindValue(':companyProduction', $companyProduction);
-        $querie->bindValue(':yearProduction', $yearProduction);
-        $querie->bindValue(':id_movie', $id_movie);
-        $querie->execute();
+        $query->bindValue(':title', $title);
+        $query->bindValue(':producer', $producer);
+        $query->bindValue(':synopsis', $synopsis);
+        $query->bindValue(':theme', $theme);
+        $query->bindValue(':scriptWriter', $scriptWriter);
+        $query->bindValue(':companyProduction', $companyProduction);
+        $query->bindValue(':yearProduction', $yearProduction);
+        $query->bindValue(':id_movie', $id_movie);
+        $query->execute();
         header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');
         return true;
     } catch (PDOException $e) {
@@ -173,9 +173,9 @@ class Movies
     public static function deleteMovie($id_book){
       try {
         $db = database::connexion();
-        $querie = $db->prepare('DELETE FROM movie WHERE id_movie = :id');
-        $querie->bindValue(':id',$id_book);
-        $querie->execute();
+        $query = $db->prepare('DELETE FROM movie WHERE id_movie = :id');
+        $query->bindValue(':id',$id_book);
+        $query->execute();
         header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');
         return true;
       } catch (PDOException $e) {
@@ -195,15 +195,15 @@ class Movies
   ) {
       try {
           $db = database::connexion();
-          $querie = $db->prepare('INSERT INTO movie (title_movie, producer_movie, synopsis_movie, theme_movie, scriptWriter_movie, companyProduction_movie, yearProduction_movie) VALUES (:title, :producer, :synopsis, :theme, :scriptWriter, :companyProduction, :yearProduction)');
-          $querie->bindValue(':title', $title);
-          $querie->bindValue(':producer', $producer);
-          $querie->bindValue(':synopsis', $synopsis);
-          $querie->bindValue(':theme', $theme);
-          $querie->bindValue(':scriptWriter', $scriptWriter);
-          $querie->bindValue(':companyProduction', $companyProduction);
-          $querie->bindValue(':yearProduction', $yearProduction);
-          $querie->execute();
+          $query = $db->prepare('INSERT INTO movie (title_movie, producer_movie, synopsis_movie, theme_movie, scriptWriter_movie, companyProduction_movie, yearProduction_movie) VALUES (:title, :producer, :synopsis, :theme, :scriptWriter, :companyProduction, :yearProduction)');
+          $query->bindValue(':title', $title);
+          $query->bindValue(':producer', $producer);
+          $query->bindValue(':synopsis', $synopsis);
+          $query->bindValue(':theme', $theme);
+          $query->bindValue(':scriptWriter', $scriptWriter);
+          $query->bindValue(':companyProduction', $companyProduction);
+          $query->bindValue(':yearProduction', $yearProduction);
+          $query->execute();
           header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');
           return true;
       } catch (PDOException $e) {
@@ -216,10 +216,10 @@ class Movies
   global $movies;
     try {
       $db = database::connexion();
-      $querie = $db->prepare('SELECT * FROM movie where title_movie like :title');
-      $querie->bindValue(':title', '%' . $title . '%');
-      $querie->execute();
-      $movies = $querie->fetchAll(PDO::FETCH_ASSOC);
+      $query = $db->prepare('SELECT * FROM movie where title_movie like :title');
+      $query->bindValue(':title', '%' . $title . '%');
+      $query->execute();
+      $movies = $query->fetchAll(PDO::FETCH_ASSOC);
       return $movies;
       
     } catch (PDOException $e) {

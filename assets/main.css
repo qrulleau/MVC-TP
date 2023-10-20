@@ -78,3 +78,6 @@ h1 {
   font-weight: 500 !important;
   margin: 20px 0 32px 0 !important;
 }
+.bg-image {
+  background-image: url("http://www.localhost/MVC-TP/assets/background.jpg");
+}
