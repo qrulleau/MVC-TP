@@ -46,7 +46,7 @@ class User
         $this->yearCreation = $yearCreation;
     }
 
-    public static function  getUser($email)
+    public static function  getUser($email,$enteredPassword)
     {
       try {
         $db = database::connexion();
@@ -54,7 +54,7 @@ class User
         $query->bindValue(':email',$email);
         $query->execute();
         $user = $query->fetch(PDO::FETCH_ASSOC);
-        if ($user){
+        if ($user && password_verify($enteredPassword, $user['password_user'])){
             session_start();
             $_SESSION['username'] = $user['username_user'];
             header('Location: http://www.localhost/MVC-TP/index.php?route=backoffice');   
@@ -73,8 +73,11 @@ class User
         try {
             $db = database::connexion();
             $query = $db->prepare(
-                'INSERT INTO user (email_user,
-                                   password_user,username_user,yearCreation_user) 
+                'INSERT INTO user (
+                    password_user,
+                    email_user,
+                    username_user,
+                    yearCreation_user) 
                 VALUES (:password , 
                        :email,
                        :username,

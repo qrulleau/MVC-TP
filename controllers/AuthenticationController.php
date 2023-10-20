@@ -14,7 +14,7 @@ function authenfication(){
   $password = $_POST['password'];
 
   if (isset($email) && isset($password)){
-    User::getUser($email);
+    User::getUser($email,$password);
   }
 }
 
