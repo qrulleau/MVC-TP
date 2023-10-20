@@ -81,9 +81,9 @@ class User
                     username_user,
                     yearCreation_user) 
                 VALUES (:password , 
-                       :email,
-                       :username,
-                       :yearCreation)
+                    :email,
+                    :username,
+                    :yearCreation)
             ');
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -97,5 +97,6 @@ class User
             echo "Erreur de requete : " . $e->getMessage();
             return null;
         }
-    }
+    
+    }   
 }
