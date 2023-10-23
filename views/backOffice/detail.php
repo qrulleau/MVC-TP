@@ -12,7 +12,7 @@
         <div class="movie-description">
             <p><?php echo $movie['synopsis_movie']?></p>
         </div>
-        <img class="movie-thumbnail" src="http://www.localhost/MVC-TP/assets/<?php echo $movie['thumbnail_movie']?>" alt="Thumbnail du film">
+        <img class="movie-thumbnail" src="http://www.localhost/MVC-TP/assets/thumbnail/<?php echo $movie['thumbnail_movie']?>" alt="Thumbnail du film">
       </div>
     </div>
     <div class="d-flex justify-center">
